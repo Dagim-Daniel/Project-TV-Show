@@ -1,3 +1,60 @@
+body {
+  background-color: #e0dddd;
+  margin: 0;
+  /* Extra space at bottom so fixed footer doesn't hide episode cards */
+  padding-bottom: 60px;
+}
+
 #root {
-  color: red;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.episode-card {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: left; /* 'justify' often creates readability issues for dyslexic users */
+  transition: box-shadow 0.2s ease;
+}
+
+.episode-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.episode-card:hover .episode-title {
+  text-decoration: underline;
+}
+
+.episode-title {
+  margin-top: 0;
+  font-size: 1.25rem;
+}
+
+.episode-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.episode-summary {
+  font-size: 16px;
+  color: #222; /* Darkened slightly for higher contrast ratio */
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+#bottomBar {
+  border-top: 1px solid #000;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #f5f5f5;
+  width: 100%;
+  padding: 10px 0;
+  z-index: 1000;
 }
