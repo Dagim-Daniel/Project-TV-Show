@@ -1,7 +1,6 @@
 body {
   background-color: #e0dddd;
   margin: 0;
-  /* Extra space at bottom so fixed footer doesn't hide episode cards */
   padding-bottom: 60px;
 }
 
@@ -24,15 +23,31 @@ body {
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
+  max-width: 300px;
 }
 
 #controls input {
-  min-width: 250px;
+  min-width: 200px;
 }
 
 #match-count {
   font-weight: bold;
   color: #333;
+}
+
+.status-message {
+  padding: 20px;
+  margin: 20px;
+  font-size: 1.25rem;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.error-state {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
 }
 
 #root {
