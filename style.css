@@ -1,10 +1,48 @@
 body {
   background-color: #e0dddd;
   margin: 0;
-  /* Extra space at bottom so fixed footer doesn't hide episode cards */
+  font-family: Arial, sans-serif;
   padding-bottom: 60px;
 }
 
+/* Control Bar Navigation */
+.controls-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f5f5f5;
+  padding: 15px 20px;
+  border-bottom: 2px solid #ccc;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.control-group label {
+  font-weight: bold;
+  color: #333;
+}
+
+.control-group input,
+.control-group select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+#episode-count {
+  margin: 0;
+  font-weight: 600;
+  color: #444;
+}
+
+/* Main Grid Layout */
 #root {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -12,12 +50,14 @@ body {
   padding: 20px;
 }
 
+/* Card Styling */
 .episode-card {
   background-color: #f5f5f5;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  text-align: left; /* 'justify' often creates readability issues for dyslexic users */
+  display: flex;
+  flex-direction: column;
   transition: box-shadow 0.2s ease;
 }
 
@@ -31,23 +71,47 @@ body {
 
 .episode-title {
   margin-top: 0;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+  color: #111;
 }
 
 .episode-image {
   width: 100%;
   height: auto;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .episode-summary {
-  font-size: 16px;
-  color: #222; /* Darkened slightly for higher contrast ratio */
+  font-size: 0.95rem;
+  color: #222;
   max-height: 150px;
   overflow-y: auto;
+  margin-top: 10px;
 }
 
-#bottomBar {
+/* Status Messages */
+.message {
+  font-size: 1.1rem;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  grid-column: 1 / -1;
+}
+
+.message-loading {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  border: 1px solid #90caf9;
+}
+
+.message-error {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+/* Fixed Footer */
+#bottom-bar {
   border-top: 1px solid #000;
   text-align: center;
   position: fixed;
