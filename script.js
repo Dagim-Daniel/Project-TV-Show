@@ -4,10 +4,7 @@ let state = {
   selectedEpisodeId: "ALL",
 };
 
-function setup() {
-  state.allEpisodes = getAllEpisodes();
-  populateSelectDropdown(state.allEpisodes);
-
+async function setup() {
   // Attach Event Listeners
   document
     .getElementById("search-input")
@@ -16,7 +13,31 @@ function setup() {
     .getElementById("episode-select")
     .addEventListener("change", handleSelectChange);
 
-  render();
+  const loadingElem = document.getElementById("loading-indicator");
+  const errorElem = document.getElementById("error-message");
+
+  try {
+    const response = await fetch("https://api.tvmaze.com/shows/82/episodes");
+
+    if (!response.ok) {
+      throw new Error(`Server returned HTTP status ${response.status}`);
+    }
+
+    const episodes = await response.json();
+    state.allEpisodes = episodes;
+
+    // Hide loading screen
+    loadingElem.hidden = true;
+
+    // Populate dropdown and render page once data is ready
+    populateSelectDropdown(state.allEpisodes);
+    render();
+  } catch (error) {
+    // Hide loading indicator and reveal user-facing error message
+    loadingElem.hidden = true;
+    errorElem.textContent = `Failed to load episodes: ${error.message}. Please try refreshing the page.`;
+    errorElem.hidden = false;
+  }
 }
 
 function handleSearchInput(event) {
@@ -37,7 +58,9 @@ function getFilteredEpisodes() {
       episode.id.toString() === state.selectedEpisodeId;
 
     // Search Input Filter
-    const titleMatch = episode.name.toLowerCase().includes(state.searchTerm);
+    const titleMatch = episode.name
+      ? episode.name.toLowerCase().includes(state.searchTerm)
+      : false;
     const summaryMatch = episode.summary
       ? episode.summary.toLowerCase().includes(state.searchTerm)
       : false;
@@ -87,7 +110,8 @@ function createEpisodeCard(episode) {
   cardNode.querySelector(".episode-title").textContent =
     `${episode.name} - ${episodeCode}`;
   cardNode.querySelector(".episode-image").src = episode.image?.medium || "";
-  cardNode.querySelector(".episode-image").alt = episode.name;
+  cardNode.querySelector(".episode-image").alt =
+    episode.name || "Episode image";
   cardNode.querySelector(".episode-summary").innerHTML = episode.summary || "";
 
   return cardNode;

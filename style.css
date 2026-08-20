@@ -35,6 +35,21 @@ body {
   color: #333;
 }
 
+.status-message {
+  padding: 20px;
+  margin: 20px;
+  font-size: 1.25rem;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.error-state {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+}
+
 #root {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
