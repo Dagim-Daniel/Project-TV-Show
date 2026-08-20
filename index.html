@@ -4,10 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
-    <script src="episodes.js"></script>
-
-    <!-- Loads YOUR javascript code -->
     <script src="script.js" defer></script>
 
     <title>TV Show Project | Dagim Daniel</title>
@@ -17,6 +13,10 @@
 
   <body>
     <header id="controls">
+      <select id="show-select" aria-label="Select a TV show">
+        <!-- Show options populated dynamically -->
+      </select>
+
       <select id="episode-select" aria-label="Select an episode">
         <option value="ALL">All Episodes</option>
       </select>
@@ -31,6 +31,14 @@
       <span id="match-count" aria-live="polite"></span>
     </header>
 
+    <main id="main-content">
+      <div id="loading-indicator" class="status-message">
+        Loading data, please wait...
+      </div>
+      <div id="error-message" class="status-message error-state" hidden></div>
+      <div id="root" aria-label="TV Show Project"></div>
+    </main>
+
     <template id="episode-template">
       <section class="episode-card">
         <h2 class="episode-title"></h2>
@@ -38,8 +46,6 @@
         <div class="episode-summary"></div>
       </section>
     </template>
-
-    <main id="root" aria-label="TV Show Project"></main>
 
     <footer id="bottomBar">
       <span>Original Link: </span>
