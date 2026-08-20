@@ -1,7 +1,12 @@
+[hidden] {
+  display: none !important;
+}
+
 body {
   background-color: #e0dddd;
   margin: 0;
   padding-bottom: 60px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #controls {
@@ -18,21 +23,33 @@ body {
 }
 
 #controls input,
-#controls select {
+#controls select,
+#controls button {
   padding: 8px 12px;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
-  max-width: 300px;
+}
+
+#back-to-shows-btn {
+  background-color: #0056b3;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#back-to-shows-btn:hover {
+  background-color: #003d80;
 }
 
 #controls input {
-  min-width: 200px;
+  min-width: 220px;
 }
 
 #match-count {
   font-weight: bold;
-  color: #333;
+  color: #333333;
 }
 
 .status-message {
@@ -40,7 +57,7 @@ body {
   margin: 20px;
   font-size: 1.25rem;
   text-align: center;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 8px;
 }
 
@@ -50,11 +67,75 @@ body {
   border: 1px solid #f5c6cb;
 }
 
-#root {
+#shows-root {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+#episodes-root {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   padding: 20px;
+}
+
+.show-card {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: box-shadow 0.2s ease;
+}
+
+.show-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.show-title {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #0056b3;
+  cursor: pointer;
+}
+
+.show-title:hover {
+  text-decoration: underline;
+}
+
+.show-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.show-image {
+  width: 160px;
+  height: 225px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.show-summary {
+  flex: 2;
+  min-width: 250px;
+  font-size: 15px;
+  color: #222222;
+}
+
+.show-meta {
+  flex: 1;
+  min-width: 180px;
+  background-color: #eaeaea;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.show-meta p {
+  margin: 6px 0;
 }
 
 .episode-card {
@@ -70,10 +151,6 @@ body {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.episode-card:hover .episode-title {
-  text-decoration: underline;
-}
-
 .episode-title {
   margin-top: 0;
   font-size: 1.25rem;
@@ -87,13 +164,13 @@ body {
 
 .episode-summary {
   font-size: 16px;
-  color: #222;
+  color: #222222;
   max-height: 150px;
   overflow-y: auto;
 }
 
 #bottomBar {
-  border-top: 1px solid #000;
+  border-top: 1px solid #000000;
   text-align: center;
   position: fixed;
   bottom: 0;
