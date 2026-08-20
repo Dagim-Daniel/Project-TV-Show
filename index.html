@@ -3,33 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
+    <script src="episodes.js"></script>
+
+    <!-- Loads YOUR javascript code -->
+    <script src="script.js" defer></script>
+
     <title>TV Show Project | Dagim Daniel</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-
-    <script src="script.js" defer></script>
   </head>
 
   <body>
-    <header class="controls-container">
-      <div class="control-group">
-        <label for="search-input">Search episodes:</label>
-        <input
-          type="search"
-          id="search-input"
-          placeholder="Type to search..."
-          aria-label="Search episodes"
-        />
-      </div>
+    <header id="controls">
+      <select id="episode-select" aria-label="Select an episode">
+        <option value="ALL">All Episodes</option>
+      </select>
 
-      <div class="control-group">
-        <label for="episode-select">Jump to episode:</label>
-        <select id="episode-select" aria-label="Select an episode">
-          <option value="ALL">Show all episodes</option>
-        </select>
-      </div>
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search episodes..."
+        aria-label="Search episodes"
+      />
 
-      <p id="episode-count" aria-live="polite">Displaying 0 / 0 episodes</p>
+      <span id="match-count" aria-live="polite"></span>
     </header>
 
     <template id="episode-template">
@@ -40,18 +39,13 @@
       </section>
     </template>
 
-    <main id="root" aria-label="TV Episodes Catalog"></main>
+    <main id="root" aria-label="TV Show Project"></main>
 
-    <footer id="bottom-bar">
+    <footer id="bottomBar">
       <span>Original Link: </span>
-      <a
-        id="original-link"
-        href="https://tvmaze.com/"
-        target="_blank"
-        rel="noopener noreferrer"
+      <a id="original-link" href="https://tvmaze.com/" target="_self"
+        >TVMaze.com</a
       >
-        TVMaze.com
-      </a>
     </footer>
   </body>
 </html>
